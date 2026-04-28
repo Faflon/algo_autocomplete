@@ -1,6 +1,8 @@
 import csv
 import time
 
+#memory complexity $O(N*L)$, where $N$ means number of words and $L$ mean lenght
+
 class TrieNode:
     """
     Represents a single node (letter) in the Trie.
@@ -107,7 +109,6 @@ def load_data_into_trie(csv_filepath: str) -> Trie:
 # ==========================================
 if __name__ == "__main__":
     # 1. Initialize and load data (make sure unigram_freq.csv is in the folder)
-    # If you don't have the file yet, you can test with a dummy CSV or comment this out
     #my_trie = load_data_into_trie("data/unigram_freq.csv")
     my_trie = load_data_into_trie("data/synthetic_searches.csv")
     # 2. Simulate user input
