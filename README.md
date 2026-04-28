@@ -38,6 +38,7 @@ While Time Complexity is highly optimized, the primary bottleneck is **Space Com
 ├── heap_ranker.py               # Module containing DFS & Min-Heap logic (Algorithm B)
 ├── main.py                      # Main entry point for the Live Demo
 └── README.md
+```
 
 ## 🚀 How to Run the Live Demo
 
