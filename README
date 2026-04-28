@@ -38,3 +38,22 @@ While Time Complexity is highly optimized, the primary bottleneck is **Space Com
 ├── heap_ranker.py               # Module containing DFS & Min-Heap logic (Algorithm B)
 ├── main.py                      # Main entry point for the Live Demo
 └── README.md
+
+## 🚀 How to Run the Live Demo
+
+**1. Generate the dataset:**
+Generate a synthetic dataset of 1.5 million records (takes about 10 seconds):
+
+    `python generate_data.py`
+
+*(Make sure to move the generated `synthetic_searches.csv` into the `data/` folder).*
+
+**2. Run the interactive demo:**
+
+    `python main.py`
+
+Type any prefix (e.g., `pro`, `kat`, `kwdadn`) into the terminal to see the top 5 suggestions and the execution time in milliseconds.
+
+## 🤝 Contributors
+* **Adam Jaworski:** Data Ingestion & Prefix Filtering
+* **Julia Winiarz:** Depth-First Search & Min-Heap Ranking
