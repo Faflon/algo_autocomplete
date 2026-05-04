@@ -16,6 +16,8 @@ class TrieNode:
         self.score = 0
         # Storing the full word here makes it easier for Person 2 to collect results
         self.word = ""
+        # Storing the maximum score
+        self.max_score = 0
 
 class Trie:
     """
@@ -30,15 +32,15 @@ class Trie:
         Time Complexity: O(L) where L is the length of the word.
         """
         node = self.root
+        node.max_score = max (node.max_score, score)
         for char in word:
             # If the character path doesn't exist, create a new node
             if char not in node.children:
                 node.children[char] = TrieNode()
             # Move down the tree
             node = node.children[char]
+            node.max_score = max(node.max_score, score)
         
-        # We reached the end of the word. Mark it and save the data.
-        # This elegantly handles nested words (e.g., "kos" and "kosodrzewina")
         node.is_end = True
         node.score = score
         node.word = word
