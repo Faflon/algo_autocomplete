@@ -1,7 +1,7 @@
 import heapq
 
 
-def dfs_collect_words(node):
+def dfs_with_heap(node, top_5_heap):
     """
     Depth-first search to collect words from the trie.
     Time complexity: O(N) where N is the number of nodes in the trie.
@@ -11,23 +11,32 @@ def dfs_collect_words(node):
     if not node:
         return results
 
+    if len(top_5_heap) == 5 and node.max_score <= top_5_heap[0][0]:
+        return
+
     if node.is_end:
-        results.append((node.word, node.score))
+        if len(top_5_heap) < 5:
+            heapq.heappush(top_5_heap, (node.score, node.word))
+        else:
+            if node.score > top_5_heap[0][0]:
+                heapq.heappushpop(top_5_heap, (node.score, node.word))
+    sorted_children = sorted(
+        node.children.values(), key=lambda child: child.max_score, reverse=True
+    )
 
-    for child_node in node.children.values():
-        results.extend(dfs_collect_words(child_node))
-
-    return results
+    for child_node in sorted_children:
+        dfs_with_heap(child_node, top_5_heap)
 
 
 def get_top_5_completions(prefix_node):
     """
-    Get the top 5 completions for a given prefix node with best scores.
+    Gets the top 5 completions for a given prefix node using a heap to maintain the top scores.
     """
     if not prefix_node:
         return []
 
-    all_possible_words = dfs_collect_words(prefix_node)
-    top_5_words = heapq.nlargest(5, all_possible_words, key=lambda x: x[1])
+    top_5_heap = []
+    dfs_with_heap(prefix_node, top_5_heap)
 
-    return top_5_words
+    top_5_heap.sort(key=lambda x: x[0], reverse=True)
+    return [(query, score) for score, query in top_5_heap]
