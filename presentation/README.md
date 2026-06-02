@@ -5,31 +5,33 @@ Everything you need for the 5-minute final presentation, in the order you should
 | # | File | What's inside |
 |---|---|---|
 | 1 | [`01_APPROACH_REVIEW.md`](./01_APPROACH_REVIEW.md) | Honest review of your approach: what's strong, what to defend, small polish items |
-| 2 | [`02_SLIDES.md`](./02_SLIDES.md) | 8 slides + 3 backup slides, in [Marp](https://marp.app/) markdown — opens straight in VS Code, exports to PDF / PPTX |
-| 3 | [`03_SPEAKER_SCRIPT.md`](./03_SPEAKER_SCRIPT.md) | Word-for-word script split between Adam and Julia, with timing per slide and Q&A answers |
+| 2 | [`Autocomplete_Presentation.pptx`](./Autocomplete_Presentation.pptx) | **Editable PowerPoint deck** — open in PowerPoint / Google Slides / Keynote |
+| 3 | [`Autocomplete_Presentation.pdf`](./Autocomplete_Presentation.pdf) | Read-only PDF backup of the same deck |
+| 4 | [`02_SLIDES.md`](./02_SLIDES.md) | Marp markdown source for the deck (used to regenerate the PPTX/PDF if needed) |
+| 5 | [`03_SPEAKER_SCRIPT.md`](./03_SPEAKER_SCRIPT.md) | Word-for-word script split between Adam and Julia, with timing per slide and Q&A answers |
 
-## Rendering the slides
+## Editing the slides
 
-The slides are written in **Marp** markdown. Three easy ways to view / export:
+The recommended path is to **open `Autocomplete_Presentation.pptx` directly** in PowerPoint, Google Slides, or Keynote and edit there.
 
-**Option A — VS Code** *(easiest)*
-1. Install the extension *"Marp for VS Code"*.
-2. Open `02_SLIDES.md`.
-3. Click the *Marp preview* icon in the top-right of the editor.
-4. To export: command palette → *"Marp: Export slide deck"* → pick PDF or PPTX.
+> **Tip — fonts & code blocks.** The deck uses the default theme font. Code blocks are rendered as monospaced text inside a colored box. If a code block looks off after editing, set its font to "Consolas" or "Menlo" at 18 pt and apply a light-grey fill.
 
-**Option B — CLI**
+## Re-generating the slides from the markdown source
+
+If you change `02_SLIDES.md` and want fresh PPTX / PDF files:
+
 ```bash
-npx @marp-team/marp-cli@latest 02_SLIDES.md -o slides.pdf
-npx @marp-team/marp-cli@latest 02_SLIDES.md -o slides.pptx
+cd /workspace
+npx @marp-team/marp-cli@latest presentation/02_SLIDES.md --pptx --no-stdin -o presentation/Autocomplete_Presentation.pptx
+npx @marp-team/marp-cli@latest presentation/02_SLIDES.md --pdf  --no-stdin -o presentation/Autocomplete_Presentation.pdf
 ```
 
-**Option C — copy into Google Slides**
-The deck is plain markdown headings + tables. If Marp is unavailable, copy each `---`-separated section into a Google Slides slide manually. Estimated time: 15 minutes.
+Marp also runs as a VS Code extension (*"Marp for VS Code"*) — you get a live preview and an export button.
 
 ## Demo run-of-show
 
 Before standing up:
+
 ```bash
 cd /workspace
 python main.py
